@@ -28,7 +28,7 @@ function FavoritePlayer(props: Props) {
       <>
         <div className='allPlayers' >
 
-          {playersList?.length == 0 && <h2>No Have Favorites.</h2>}
+          {playersList?.length == 0 && <h2>There Are No Favorites.</h2>}
           {playersList?.map((player) => {
 
             return <PlayersDisplay key={player.id} data={player} status={PlayerStatus.Favorite} />

@@ -6,17 +6,24 @@ import Switch from '@mui/material/Switch';
 import FavoritePlayer from './Components/Favorite/FavoritePlayer';
 import './App.css'
 import SearchIcon from '@mui/icons-material/Search';
+import { AppContextInterface, AppCtx } from './Context/Context';
 
 function App() {
+
+
   const [search, setSearch] = useState<string | undefined>("");
   const [bgColor, setBgColor] = useState<boolean>(true);
 
-  const [count, setCount] = useState<number>(0);
 
   const changeColorCallBack = useCallback(
     () => setBgColor((prevState) => !prevState),
     [bgColor],
   );
+
+  const contextChangeColor: AppContextInterface = {
+    ChangeColor: changeColorCallBack
+  };
+
 
   return (
     <div className="App">
@@ -35,7 +42,9 @@ function App() {
         }} />
       </div>
       <div className='players'>
-        <AllPlayers  search={search} callBack ={ changeColorCallBack }/>
+        <AppCtx.Provider value={contextChangeColor}>
+          <AllPlayers search={search}  />
+        </AppCtx.Provider>
         <FavoritePlayer color={bgColor} />
 
       </div>

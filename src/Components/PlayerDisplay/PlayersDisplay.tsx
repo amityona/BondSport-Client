@@ -12,13 +12,16 @@ import { PlayerStatus } from '../../Enums/enums';
 import { FavoriteAction, FavoriteActionType, favoriteStore } from '../../Redux/FavoriteState';
 import { AddToFavorite, DeleteFromFavorite } from '../../ReduxFunction';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-
+import { useContext } from "react";
+import { AppCtx } from '../../Context/Context';
 
 export interface ElementWithKey extends JSX.Element {
   key: React.Key;
 }
 
 function PlayersDisplay(props: any): JSX.Element {
+  const appContext = useContext(AppCtx);
+
   return (
     <div className='PlayerDisplay'>
       <div className='iconButtonSpace'>
@@ -42,7 +45,7 @@ function PlayersDisplay(props: any): JSX.Element {
         {props.status == PlayerStatus.Empty &&
           <IconButton color="secondary" aria-label="add an alarm" onClick={() => {
             AddToFavorite(props.data);
-            props.callBack();
+            appContext?.ChangeColor();
           }
 
           }>

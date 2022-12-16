@@ -11,7 +11,6 @@ import { PlayerStatus } from '../../Enums/enums';
 
 interface Props {
   search: string | undefined;
-  callBack : Function;
 }
 function AllPlayers(props: Props) {
   const [cacheData, setCacheData] = React.useState<IPlayer[] | null | undefined>(null);
@@ -60,7 +59,7 @@ function AllPlayers(props: Props) {
         {loading && <CircularProgress className='CircularProgress'
         />}
         {playersList?.map((player) => {
-          return <PlayersDisplay key={player.id} data={player} status={PlayerStatus.Empty} callBack={props.callBack} />
+          return <PlayersDisplay key={player.id} data={player} status={PlayerStatus.Empty} />
         })}
 
         <Pagination count={maxPage} page={page} onChange={handleChange} className="Pagination" />
