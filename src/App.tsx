@@ -1,24 +1,44 @@
-import React from 'react';
+import React, { createRef, useCallback, useEffect, useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import Header from './Layout/Header';
+import AllPlayers from './Components/AllPlayers/AllPlayers';
+import Switch from '@mui/material/Switch';
+import FavoritePlayer from './Components/Favorite/FavoritePlayer';
+import './App.css'
+import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
+  const [search, setSearch] = useState<string | undefined>("");
+  const [bgColor, setBgColor] = useState<boolean>(true);
+
+  const [count, setCount] = useState<number>(0);
+
+  const changeColorCallBack = useCallback(
+    () => setBgColor((prevState) => !prevState),
+    [bgColor],
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+
+      <Switch
+        checked={bgColor}
+        onChange={() => { setBgColor((prevState) => !prevState) }}
+        inputProps={{ 'aria-label': 'controlled' }}
+      />
+
+      <div className="header__search">
+        <SearchIcon />
+        <input type="text" placeholder="Search Player" onChange={(e) => {
+          setSearch(e.target.value);
+        }} />
+      </div>
+      <div className='players'>
+        <AllPlayers  search={search} callBack ={ changeColorCallBack }/>
+        <FavoritePlayer color={bgColor} />
+
+      </div>
     </div>
   );
 }

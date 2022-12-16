@@ -1,0 +1,52 @@
+.PlayerDisplay {
+    display: flex;
+    box-shadow: -19px 3px 60px 16px rgba(5, 2, 2, 0.26);
+    -webkit-box-shadow: -19px 3px 60px 16px rgba(5, 2, 2, 0.26);
+    flex: 0.5;
+    align-items: center;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    max-height: 190px;
+    margin: 9px;
+    padding-left: 5px;
+}
+
+.PlayerDisplay:hover {
+    background-color: whitesmoke;
+    opacity: 0.4;
+}
+
+.playerData {
+    display: flex;
+    padding-top: 5px;
+    align-items: center;
+    border-bottom: black;
+}
+
+.playerData>h2 {
+    font-size: 19px;
+    color: blue
+}
+
+h2 {
+    margin: 0px;
+    padding-left: 3px;
+}
+
+
+.otherData {
+    display: flex;
+    align-items: center;
+    padding-left: 3px;
+}
+
+.teamData {
+    display: flex;
+    align-items: center;
+    padding-left: 3px;
+}
+
+.iconButtonSpace {
+    justify-content: space-between;
+}
